@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des marques{% endblock %}
+
+{% block body %}
+        <div>
+            Liste des marques
+        </div>
+        <div>
+			<table>
+				<tr>
+					<td>id</td>
+					<td>nom</td>
+					<td>actions</td>
+				</tr>
+				
+				{% for brand in brands %}
+					<tr>
+						<td>{{ brand.id }}</td>
+						<td>{{ brand.name }}</td>
+						<td>
+							<a href="{{ path('brand_view',{'id': brand.id}) }}">Voir</a> 
+							<a href="{{ path('brand_edit',{'id': brand.id}) }}">Modifier</a> 
+							<a href="{{ path('brand_delete',{'id': brand.id}) }}">Supprimer</a> 
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+        </div>
+		<div>
+			<a href="{{ path('brand_add') }}">Ajouter une marque</a>
+		</div>
+{% endblock %}

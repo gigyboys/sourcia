@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'une marque{% endblock %}
+
+{% block body %}
+	<h3>
+		Ajout d'une marque
+	</h3>
+	<div>
+		{{ form_start(form) }}
+			<div class="my-custom-class-for-errors">
+				{{ form_errors(form) }}
+			</div>
+			
+			<div class="form-control">
+				<i class="fa fa-calendar"></i>
+				{{ form_label(form.name, 'Brand name', {'label_attr': {'class': 'foo'}}) }} :  
+				{#{{ form_label(form.name) }} : #}
+				{{ form_widget(form.name) }}
+
+				<div class="form-error">
+					{{ form_errors(form.name) }}
+				</div>
+			</div>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

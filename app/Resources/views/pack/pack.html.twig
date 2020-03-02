@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultation d'un pack{% endblock %}
+
+{% block body %}
+        <div>
+            Consultation pack
+        </div>
+		<div class="bloc_info">
+			<div>
+				Informations de base : 
+			</div>
+			<div>
+				Id : {{ pack.id }}<br>
+				Nom : {{ pack.name }}<br>
+			</div>
+		</div>
+		{% if productPacks | length > 0 %}
+			<div class="bloc_info">
+				<div>
+					Produits du pack : 
+				</div>
+				<div>
+					{% for productPack in productPacks %}
+						Produit : {{ productPack.product.name }} / Quantité : {{ productPack.quantity }}<br>
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+		<div class="bloc_info">
+			<div>
+				Ajout d'une ligne
+			</div>
+			<div>
+				{{ form_start(form) }}
+				{{ form_widget(form) }}
+				{{ form_end(form) }}
+			</div>
+		</div>
+{% endblock %}

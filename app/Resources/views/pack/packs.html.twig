@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des packs{% endblock %}
+
+{% block body %}
+	<div>
+		Liste des packs
+	</div>
+	<div>
+	
+		<div>
+			<table>
+				<tr>
+					<td>id</td>
+					<td>nom</td>
+					<td>Nb produits</td>
+					<td>actions</td>
+				</tr>
+				
+				{% for pack in packs %}
+					<tr>
+						<td>{{ pack.id }}</td>
+						<td>{{ pack.name }}</td>
+						<td>{{ pack | countProducts }}</td>
+						<td>
+							<a href="{{ path('pack_view',{'id': pack.id}) }}">Voir</a> 
+							{#<a href="{{ path('pack_edit',{'id': pack.id}) }}">Modifier</a> #}
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+	<div>
+		<a href="{{ path('pack_add') }}">Ajouter un pack</a>
+	</div>
+{% endblock %}

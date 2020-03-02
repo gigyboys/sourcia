@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultation d'un produit{% endblock %}
+
+{% block body %}
+        <div>
+            Consultation produit
+        </div>
+		<div class="bloc_info">
+			<div>
+				Informations de base : 
+			</div>
+			<div>
+				Id : {{ product.id }}<br>
+				Nom : {{ product.name }}<br>
+				Code : {{ product.code }}<br>
+				Prix : {{ product.price }}<br>
+			</div>
+		</div>
+		{% if product.productInfo %}
+			{% set productInfo = product.productInfo %}
+			<div class="bloc_info">
+				<div>
+					Informations supplémentaires : 
+				</div>
+				<div>
+					Poids : {{ productInfo.weight }}<br>
+					Description : {{ productInfo.description }}<br>
+				</div>
+			</div>
+		{% endif %}
+		{% if product.brands | length > 0 %}
+			<div class="bloc_info">
+				<div>
+					Marques : 
+				</div>
+				<div>
+					{% for brand in product.brands %}
+						{{ brand.name }}<br>
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+		{% set packs = getPacksHavingProduct(product) %}
+		{% if packs | length > 0 %}
+			<div class="bloc_info">
+				<div>
+					Packs : 
+				</div>
+				<div>
+					{% for pack in packs %}
+						{{ pack.name }}<br>
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+		{% set produitPack = getFirstProductPackHavingProduct(product) %}
+		{% if produitPack %}
+			<div class="bloc_info">
+				<div>
+					Pack premier : 
+				</div>
+				<div>
+					{{ produitPack.pack.name }}<br>
+				</div>
+			</div>
+		{% endif %}
+{% endblock %}

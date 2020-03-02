@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification d'une marque{% endblock %}
+
+{% block body %}
+        <div>
+            Modification d'une marque
+        </div>
+		<div>
+			{{ form_start(form) }}
+			{{ form_widget(form) }}
+			{{ form_end(form) }}
+		</div>
+{% endblock %}

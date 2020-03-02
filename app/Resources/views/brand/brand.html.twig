@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultation d'une marque{% endblock %}
+
+{% block body %}
+	<div>
+		Consultation marque
+	</div>
+	<div>
+		{{ brand.id }} : {{ brand.name }}
+	</div>
+	<div class="bloc_info">
+		<div>
+			Informations de base : 
+		</div>
+		<div>
+			Id : {{ brand.id }}<br>
+			Nom : {{ brand.name }}<br>
+		</div>
+	</div>
+	{% if brand.products | length > 0 %}
+		<div class="bloc_info">
+			<div>
+				Produit : 
+			</div>
+			<div>
+				{% for product in brand.products %}
+					<a href="{{ path('product_view',{'id': product.id}) }}">{{ product.name }}</a><br>
+				{% endfor %}
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+
+{% block breadcrumb %}
+	<nav aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="">Home</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Liste des produits</li>
+	  </ol>
+	</nav>
+{% endblock %}
+
+{% block body %}
+	<div>
+		Liste des produits
+	</div>
+	<div>
+	
+		<div>
+			<table class="table">
+				<tr>
+					<td>id</td>
+					<td>nom</td>
+					<td>code</td>
+					<td>prix</td>
+					<td>actions</td>
+				</tr>
+				
+				{% for product in products %}
+					<tr>
+						<td>{{ product.id }}</td>
+						<td>{{ product.name }}</td>
+						<td>{{ product.code }}</td>
+						<td>{{ product.price }}</td>
+						<td>
+							<a href="{{ path('product_view',{'id': product.id}) }}" class="btn btn-primary">Voir</a> 
+							<a href="{{ path('product_edit',{'id': product.id}) }}" class="btn btn-primary">Modifier</a> 
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+	<div>
+		<a href="{{ path('product_add') }}" class="btn btn-primary">Ajouter un produit</a>
+	</div>
+{% endblock %}
